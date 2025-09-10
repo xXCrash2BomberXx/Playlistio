@@ -321,7 +321,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                     errorDiv.style.display = 'none';
                     try {
                         const configString = \`://${req.get('host')}/\${encodeURIComponent(JSON.stringify({
-                            hashes,
+                            hashes: Object.entries(hashes).filter(([k, v]) => catalogs.some(c => c.id.startsWith(k))),
                             catalogs: catalogs.map(pl => ({
                                 ...pl,
                                 id: ${JSON.stringify(prefix)} + pl.id
