@@ -1,5 +1,5 @@
 {
-  "name": "Playlistify",
+  "name": "Playlistio",
   "version": "0.1.0",
   "description": "Watch YouTube videos, subscriptions, watch later, and history in Stremio.",
   "main": "addon.js",

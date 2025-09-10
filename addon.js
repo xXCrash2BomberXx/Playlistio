@@ -7,7 +7,7 @@ const express = require('express');
 /** @type {number} */
 const PORT = process.env.PORT || 7000;
 const prefix = 'pl_id:';
-const defaultType = 'Playlistify';
+const defaultType = 'Playlistio';
 
 const app = express();
 app.set('trust proxy', true);
@@ -33,9 +33,9 @@ app.get('/:config/manifest.json', (req, res) => {
     try {
         const userConfig = parseConfig(req.params.config);
         return res.json({
-            id: 'playlistify.elfhosted.com',
+            id: 'playlistio.elfhosted.com',
             version: VERSION,
-            name: 'Playlistify | ElfHosted',
+            name: 'Playlistio | ElfHosted',
             description: 'Convert catalogs into playlists.',
             resources: ['catalog', 'meta'],
             types: [...new Set(userConfig.catalogs.map(pl => {
@@ -129,7 +129,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
         <html>
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-            <title>Playlistify | ElfHosted</title>
+            <title>Playlistio | ElfHosted</title>
             <style>
                 body { font-family: 'Ubuntu', Helvetica, Arial, sans-serif; text-align: center; padding: 2rem; background: #f4f4f8; color: #333; }
                 .container { max-width: 50rem; margin: auto; background: white; padding: 2rem; border-radius: 1rem; }
@@ -165,7 +165,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
         </head>
         <body>
             <div class="container">
-                <h1>Playlistify | ElfHosted</h1>
+                <h1>Playlistio | ElfHosted</h1>
                 <h3 style="color: #f5a623;">v${VERSION}</h3>
                 ${process.env.EMBED ?? ""}
                 <form id="config-form">
@@ -178,7 +178,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                         <table id="catalog-table" style="width:100%;border-collapse:collapse;">
                             <thead>
                                 <tr>
-                                    <th>Playlistify Catalog Name</th>
+                                    <th>Playlistio Catalog Name</th>
                                     <th>Catalog ID</th>
                                     <th>Playlist Name</th>
                                     <th>Actions</th>
