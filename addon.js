@@ -178,7 +178,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                         <table id="catalog-table" style="width:100%;border-collapse:collapse;">
                             <thead>
                                 <tr>
-                                    <th>Playlistify Catalog</th>
+                                    <th>Playlistify Catalog Name</th>
                                     <th>Catalog ID</th>
                                     <th>Playlist Name</th>
                                     <th>Actions</th>
