@@ -38,7 +38,10 @@ app.get('/:config/manifest.json', (req, res) => {
             name: 'Playlistify | ElfHosted',
             description: 'Convert catalogs into playlists.',
             resources: ['catalog', 'meta'],
-            types: ['movie', 'channel'],
+            types: [...new Set(userConfig.catalogs.map(pl => {
+                const id = pl.id.slice(prefix.length);
+                return id.slice(id.indexOf(':') + 1).split('/', 1)[0];
+            }))],
             idPrefixes: [prefix],
             catalogs: userConfig.catalogs.map(pl => ({
                 type: defaultType,
@@ -84,14 +87,16 @@ app.get('/:config/meta/:type/:id.json', async (req, res) => {
         if (!req.params.id?.startsWith(prefix)) throw new Error(`Unknown ID in Meta handler: "${req.params.id}"`);
         const userConfig = parseConfig(req.params.config);
         const pl = userConfig.catalogs.find(pl => pl.id === req.params.id);
-        const id = pl.id.slice(prefix.length).split(':');
-        const type = id[1].split('/', 1)[0];
+        const id = pl.id.slice(prefix.length);
+        const hashEnd = id.indexOf(':');
+        const url = id.slice(hashEnd + 1);
+        const type = url.split('/', 1)[0];
         return res.json({
             meta: {
                 id: req.params.id,
                 type: req.params.type,
                 name: `${pl.name} (${type})`,
-                videos: (await (await fetch(userConfig.hashes[id[0]] + id[1])).json())?.metas.map((m, i) => ({
+                videos: (await (await fetch(userConfig.hashes[id.slice(0, hashEnd)] + url)).json())?.metas.map((m, i) => ({
                     id: m.id,
                     title: m.name,
                     released: m.released ?? new Date(0).toISOString(),
@@ -173,7 +178,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                         <table id="catalog-table" style="width:100%;border-collapse:collapse;">
                             <thead>
                                 <tr>
-                                    <th>Type</th>
+                                    <th>Playlistify Catalog</th>
                                     <th>Catalog ID</th>
                                     <th>Playlist Name</th>
                                     <th>Actions</th>
@@ -321,7 +326,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                     errorDiv.style.display = 'none';
                     try {
                         const configString = \`://${req.get('host')}/\${encodeURIComponent(JSON.stringify({
-                            hashes: Object.entries(hashes).filter(([k, v]) => catalogs.some(c => c.id.startsWith(k))),
+                            hashes: Object.fromEntries(Object.entries(hashes).filter(([k, v]) => catalogs.some(c => c.id.startsWith(k)))),
                             catalogs: catalogs.map(pl => ({
                                 ...pl,
                                 id: ${JSON.stringify(prefix)} + pl.id
