@@ -2,7 +2,6 @@
 
 const VERSION = require('./package.json').version;
 const express = require('express');
-const path = require('path');
 // const util = require('util');
 
 /** @type {number} */
