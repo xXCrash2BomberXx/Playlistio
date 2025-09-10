@@ -1,0 +1,12 @@
+{
+  "name": "Playlistify",
+  "version": "0.1.0",
+  "description": "Watch YouTube videos, subscriptions, watch later, and history in Stremio.",
+  "main": "addon.js",
+  "scripts": {
+    "start": "node addon.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
