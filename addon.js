@@ -169,7 +169,6 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                         <hr>
                         <div style="margin-bottom: 1rem;">
                             <button type="button" id="add-manifest" class="install-button">Add Catalogs from Manifest</button>
-                            <button type="button" id="add-catalog" class="install-button">Add Catalog</button>
                         </div>
                         <table id="catalog-table" style="width:100%;border-collapse:collapse;">
                             <thead>
@@ -313,10 +312,6 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                         } else
                             alert('Failed to fetch manifest.');
                     }
-                });
-                document.getElementById('add-catalog').addEventListener('click', () => {
-                    catalogs.push({ type: ${JSON.stringify(defaultType)}, id: '', name: '' });
-                    renderCatalogs();
                 });
                 renderCatalogs();
                 document.getElementById('config-form').addEventListener('submit', async function(event) {
