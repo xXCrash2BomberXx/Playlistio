@@ -1,7 +1,7 @@
 {
   "name": "Playlistio",
   "version": "0.1.0",
-  "description": "Watch YouTube videos, subscriptions, watch later, and history in Stremio.",
+  "description": "Convert Catalogs into an auto-playable series.",
   "main": "addon.js",
   "scripts": {
     "start": "node addon.js"
