@@ -1,4 +1,4 @@
-<img src="./Playlistio.png" /><br> 
+<img src="./icon.png" /><br> 
 
 # 🔄️ Playlistio: Stremio Catalog to Series Playlist Addon
 
