@@ -48,7 +48,7 @@ app.get('/:config/manifest.json', (req, res) => {
                 id: prefix + (pl.type ?? defaultType),
                 name: pl.type ?? defaultType,
             })),
-            logo: undefined,
+            logo: 'https://github.com/xXCrash2BomberXx/Playlistio/blob/main/Playlistio.png?raw=true',
             behaviorHints: {
                 configurable: true
             }
