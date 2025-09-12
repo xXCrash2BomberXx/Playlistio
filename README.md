@@ -13,6 +13,6 @@ For example, turn this:
 
 <img width="1218" height="833" alt="{F0983793-EC1B-4418-B971-EEF7D4A2D5F4}" src="https://github.com/user-attachments/assets/54d32455-45c1-4cfe-8b86-7bd65de84b66" />
 
-Into this:
+Into this (+ now supporting auo-play):
 
 <img width="526" height="840" alt="{5AB331CE-5A38-4FB3-8A21-44FD470EFCB1}" src="https://github.com/user-attachments/assets/b236b50f-e75f-410c-a4e9-70ccf386298f" />
