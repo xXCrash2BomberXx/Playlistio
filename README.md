@@ -1,6 +1,6 @@
 <img src="./Playlistio.png" /><br> 
 
-# 🔀 Playlistio: Stremio Catalog to Series Playlist Addon
+# 🔄️ Playlistio: Stremio Catalog to Series Playlist Addon
 
 A **Stremio addon** that lets you convert any catalog into a series that works with auto-play.
 
