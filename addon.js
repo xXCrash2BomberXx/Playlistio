@@ -48,7 +48,7 @@ app.get('/:config/manifest.json', (req, res) => {
                 id: prefix + (pl.type ?? defaultType),
                 name: pl.type ?? defaultType,
             })),
-            logo: 'https://github.com/xXCrash2BomberXx/Playlistio/blob/main/Playlistio.png?raw=true',
+            logo: 'https://github.com/xXCrash2BomberXx/Playlistio/blob/main/icon.png?raw=true',
             behaviorHints: {
                 configurable: true
             }
@@ -129,7 +129,10 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
         <html>
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-            <title>Playlistio | ElfHosted</title>
+            <div style="display: flex; justify-content: center; margin: 1rem; align-items: center;">
+                    <img src="https://github.com/xXCrash2BomberXx/Playlistio/blob/main/icon.png?raw=true" alt="Playlistio">
+                    <h1 style="position: relative; top: 96px; left: -80px; font-size: 32px;">ElfHosted</h1>
+                </div>
             <style>
                 body { font-family: 'Ubuntu', Helvetica, Arial, sans-serif; text-align: center; padding: 2rem; background: #f4f4f8; color: #333; }
                 .container { max-width: 50rem; margin: auto; background: white; padding: 2rem; border-radius: 1rem; }
