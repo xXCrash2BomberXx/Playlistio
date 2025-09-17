@@ -96,7 +96,7 @@ app.get('/:config/meta/:type/:id.json', async (req, res) => {
                 id: req.params.id,
                 type: req.params.type,
                 name: `${pl.name} (${type})`,
-                videos: (await (await fetch(userConfig.hashes[id.slice(0, hashEnd)] + url)).json())?.metas.map((m, i) => ({
+                videos: (await (await fetch((userConfig.hashes?.[id.slice(0, hashEnd)] ?? '') + url)).json())?.metas.map((m, i) => ({
                     id: m.id,
                     title: m.name,
                     released: m.released ?? new Date(0).toISOString(),
@@ -324,15 +324,18 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                 document.getElementById('config-form').addEventListener('submit', async function(event) {
                     event.preventDefault();
                     submitBtn.disabled = true;
-                    submitBtn.textContent = 'Encrypting...';
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Generating...';
                     errorDiv.style.display = 'none';
                     try {
+                        const filteredHashes = Object.fromEntries(Object.entries(hashes).filter(([k, v]) => catalogs.some(c => c.id.startsWith(k))));
+                        const modifiedCatalogs = catalogs.map(pl => ({
+                            ...pl,
+                            id: ${JSON.stringify(prefix)} + pl.id
+                        }));
                         const configString = \`://${req.get('host')}/\${encodeURIComponent(JSON.stringify({
-                            hashes: Object.fromEntries(Object.entries(hashes).filter(([k, v]) => catalogs.some(c => c.id.startsWith(k)))),
-                            catalogs: catalogs.map(pl => ({
-                                ...pl,
-                                id: ${JSON.stringify(prefix)} + pl.id
-                            }))
+                            ...(Object.keys(filteredHashes).length ? { hashes: filteredHashes } : {}),
+                            ...(modifiedCatalogs.length ? { catalogs: modifiedCatalogs } : {})
                         }))}/\`;
                         const protocol = ${JSON.stringify(req.protocol)};
                         const manifestString = configString + 'manifest.json';
@@ -346,7 +349,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
                         errorDiv.style.display = 'block';
                     } finally {
                         submitBtn.disabled = false;
-                        submitBtn.textContent = 'Generate Install Link';
+                        submitBtn.textContent = originalText;
                     }
                 });
                 document.getElementById('copy-btn').addEventListener('click', async function() {
