@@ -36,7 +36,7 @@ app.get('/:config/manifest.json', (req, res) => {
             id: 'playlistio.elfhosted.com',
             version: VERSION,
             name: 'Playlistio | ElfHosted',
-            description: 'Convert Catalogs into an Auto-Playable Series.',
+            description: 'Convert catalogs into an auto-playable series.',
             resources: ['catalog', 'meta'],
             types: [...new Set(userConfig.catalogs.map(pl => {
                 const id = pl.id.slice(prefix.length);
