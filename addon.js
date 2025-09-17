@@ -38,16 +38,16 @@ app.get('/:config/manifest.json', (req, res) => {
             name: 'Playlistio | ElfHosted',
             description: 'Convert catalogs into an auto-playable series.',
             resources: ['catalog', 'meta'],
-            types: [...new Set(userConfig.catalogs.map(pl => {
+            types: [...new Set(userConfig.catalogs?.map(pl => {
                 const id = pl.id.slice(prefix.length);
                 return id.slice(id.indexOf(':') + 1).split('/', 1)[0];
-            }))],
+            }) ?? [])],
             idPrefixes: [prefix],
-            catalogs: userConfig.catalogs.map(pl => ({
+            catalogs: userConfig.catalogs?.map(pl => ({
                 type: defaultType,
                 id: prefix + (pl.type ?? defaultType),
                 name: pl.type ?? defaultType,
-            })),
+            })) ?? [],
             logo: 'https://github.com/xXCrash2BomberXx/Playlistio/blob/main/icon.png?raw=true',
             behaviorHints: {
                 configurable: true
@@ -65,7 +65,7 @@ app.get('/:config/catalog/:type/:id/:extra?.json', async (req, res) => {
         if (!req.params.id?.startsWith(prefix)) throw new Error(`Unknown ID in Catalog handler: "${req.params.id}"`);
         const userConfig = parseConfig(req.params.config);
         return res.json({
-            metas: userConfig.catalogs.map(pl => {
+            metas: userConfig.catalogs?.map(pl => {
                 const type = pl.id.slice(prefix.length).split(':', 2)[1].split('/', 1)[0];
                 return {
                     id: pl.id,
@@ -73,7 +73,7 @@ app.get('/:config/catalog/:type/:id/:extra?.json', async (req, res) => {
                     name: `${pl.name} (${type})`,
                     poster: undefined
                 };
-            })
+            }) ?? []
         });
     } catch (error) {
         if (process.env.DEV_LOGGING) console.error('Error in Catalog handler: ' + error);
@@ -86,7 +86,8 @@ app.get('/:config/meta/:type/:id.json', async (req, res) => {
     try {
         if (!req.params.id?.startsWith(prefix)) throw new Error(`Unknown ID in Meta handler: "${req.params.id}"`);
         const userConfig = parseConfig(req.params.config);
-        const pl = userConfig.catalogs.find(pl => pl.id === req.params.id);
+        const pl = userConfig.catalogs?.find(pl => pl.id === req.params.id);
+        if (!pl) throw new Error(`Catalog ID not found in Meta handler: "${req.params.id}"`);
         const id = pl.id.slice(prefix.length);
         const hashEnd = id.indexOf(':');
         const url = id.slice(hashEnd + 1);
