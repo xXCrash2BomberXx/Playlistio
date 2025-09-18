@@ -51,7 +51,11 @@ app.get('/:config/manifest.json', (req, res) => {
             logo: `https://github.com/xXCrash2BomberXx/Playlistio/blob/${process.env.DEV_LOGGING ? 'main' : `v${VERSION}`}/icon.png?raw=true`,
             behaviorHints: {
                 configurable: true
-            }
+            },
+            "stremioAddonsConfig": {
+                "issuer": "https://stremio-addons.net",
+                "signature": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..kRv9Tat7iu-weqfAYNOFvQ.ii1KNDbyjRFTYlpA1gfC_JuIPMaKpbz4heJ3-S1t7h0CKdHlUGkJUV-kcDeavf01rrsTU3Y6NzkFuwKD-gvQPnWnjP2pTMSzGhVrmlT82s7rlsyajh0EqnaZKP-3oCiS.Ol0G4p_pdG34tGdcFj66SQ"
+              }
         });
     } catch (error) {
         if (process.env.DEV_LOGGING) console.error('Error in Manifest handler: ' + error);
