@@ -54,7 +54,7 @@ app.get('/:config/manifest.json', (req, res) => {
             },
             "stremioAddonsConfig": {
                 "issuer": "https://stremio-addons.net",
-                "signature": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..kRv9Tat7iu-weqfAYNOFvQ.ii1KNDbyjRFTYlpA1gfC_JuIPMaKpbz4heJ3-S1t7h0CKdHlUGkJUV-kcDeavf01rrsTU3Y6NzkFuwKD-gvQPnWnjP2pTMSzGhVrmlT82s7rlsyajh0EqnaZKP-3oCiS.Ol0G4p_pdG34tGdcFj66SQ"
+                "signature": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..RA5LtZirT0DgNCFdkvW8uw.IrcMpMe9XW-sZKPtMD23EYynN14ozMvGOJp2O_BPfxizW2NiVo9JmzII3Cat4w9x0v2YIowFlOY-VwNdmRBUBruHam6BO2WPdN56SVCGxqTGe5Yro28Ks_5tgO7Efizs.Vo2eEpBuEqG4kFT9UwtnHw"
               }
         });
     } catch (error) {
