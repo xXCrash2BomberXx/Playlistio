@@ -4,9 +4,14 @@
   "description": "A Stremio addon that lets you convert any catalog into a series that works with auto-play.",
   "main": "addon.js",
   "scripts": {
-    "start": "node addon.js"
+    "start": "node addon.js",
+    "local": "concurrently \"node addon.js\" \"npx ngrok http 7000\""
   },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "ngrok": "^5.0.0-beta.2"
   }
 }
