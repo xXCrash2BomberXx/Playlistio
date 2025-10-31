@@ -133,6 +133,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
+            <title>Playlistio | ElfHosted</title>
             <link rel="icon" type="image/x-icon" href="https://github.com/xXCrash2BomberXx/Playlistio/blob/${process.env.DEV_LOGGING ? 'main' : `v${VERSION}`}/icon.png?raw=true">
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
             <style>
