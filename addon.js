@@ -133,6 +133,7 @@ app.get(['/', '/:config?/configure'], async (req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
+            <link rel="icon" type="image/x-icon" href="https://github.com/xXCrash2BomberXx/Playlistio/blob/${process.env.DEV_LOGGING ? 'main' : `v${VERSION}`}/icon.png?raw=true">
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
             <style>
                 body { font-family: 'Ubuntu', Helvetica, Arial, sans-serif; text-align: center; padding: 2rem; background: #f4f4f8; color: #333; }
